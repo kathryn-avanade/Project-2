@@ -23,7 +23,12 @@ namespace Frontend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRouting(r => r.LowercaseUrls = true);
             services.AddControllersWithViews();
+
+            //var myConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            //services.AddDbContext<ApplicationDBContext>(options => options.UseMySql(myConnectionString, ServerVersion.AutoDetect(myConnectionString)));
+            //services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

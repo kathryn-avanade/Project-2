@@ -1,8 +1,15 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="~/css/Home.css">
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to the Dream Wedding Generator!</h1>
+
+    <p>The Dream Wedding Generator will generate your perfect match and your ideal destination.</p>
+
+    <p><img src="~/Content/Heart.jpeg" alt="Love Heart"></p>
+
+    <p>@ViewBag.responseCall</p>
+
 </div>
