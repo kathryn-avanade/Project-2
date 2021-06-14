@@ -23,6 +23,7 @@ namespace Frontend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //This line ensures all urls are lowercase by convention
             services.AddRouting(r => r.LowercaseUrls = true);
             services.AddControllersWithViews();
 

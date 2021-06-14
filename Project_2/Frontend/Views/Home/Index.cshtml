@@ -3,13 +3,28 @@
 }
 <link rel="stylesheet" href="~/css/Home.css">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to the Dream Wedding Generator!</h1>
 
-    <p>The Dream Wedding Generator will generate your perfect match and your ideal destination.</p>
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Welcome to the Dream Wedding Generator!</h1>
 
-    <p><img src="~/Content/Heart.jpeg" alt="Love Heart"></p>
+        <p>The Dream Wedding Generator will generate your perfect match and your ideal destination!</p>
 
-    <p>@ViewBag.responseCall</p>
 
-</div>
+        <p><img class="heart" src="~/Content/Heart.jpeg" alt="Love Heart"></p>
+
+        <p>@ViewBag.responseCall</p>
+
+        <p>Refresh the page for a new match.</p>
+    </div>
+
+    
+   
+        <img class="person" src=@ViewBag.personURL alt="Your dream wedding partner" >
+   
+        <img class="place" src=@ViewBag.placeURL alt="Your dream wedding location" >
+   
+    
+
+</body>
+

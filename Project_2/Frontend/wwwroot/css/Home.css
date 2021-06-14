@@ -1,4 +1,4 @@
-﻿img {
+﻿.heart {
     
     display: block;
     margin-left: auto;
@@ -6,3 +6,22 @@
     width: 100px;
 
 }
+.person {
+    max-width: 50%;
+    height: 200px;
+    width: auto;
+    left: auto;
+    float: left;
+    right: auto;
+}
+.place {
+    max-width: 50%;
+    height: 200px;
+    width: auto;
+    left: auto;
+    float: right;
+    right: auto;
+}
+
+
+

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using service_three.Controllers;
 using System;
@@ -35,7 +36,7 @@ namespace Project_2.Tests
 
             //Assert 
             //Check the get method returns something of type string
-            Assert.IsType<String>(result);
+            Assert.IsType<Task<IActionResult>>(result);
         }
     }
 }

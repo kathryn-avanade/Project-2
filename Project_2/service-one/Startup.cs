@@ -26,6 +26,7 @@ namespace service_one
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //This line ensures all urls are lowercase by convention
             services.AddRouting(r => r.LowercaseUrls = true);
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -46,7 +47,7 @@ namespace service_one
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "service-two v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "service-one v1");
                 c.RoutePrefix = string.Empty;
             });
             app.UseHttpsRedirection();

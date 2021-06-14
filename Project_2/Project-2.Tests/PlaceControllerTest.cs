@@ -1,4 +1,5 @@
-﻿using service_two.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
+using service_two.Controllers;
 using System;
 using System.Threading.Tasks;
 using Xunit;
@@ -8,7 +9,7 @@ namespace Project_2.Tests
     public class PlaceControllerTest
     {
         [Fact]
-        public async Task ActionMethod_Returns_String()
+        public void ActionMethod_Returns_String()
         {
             //Arrange
             //Create local controller to test
@@ -18,7 +19,7 @@ namespace Project_2.Tests
             var result = controller.Get();
             //Assert 
             //Check the get method returns something of type string
-            Assert.IsType<String>(result);
+            Assert.IsType<ActionResult<String>>(result);
         }
     }
 }
