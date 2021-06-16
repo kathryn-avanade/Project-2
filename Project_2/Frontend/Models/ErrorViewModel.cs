@@ -1,8 +1,9 @@
+using Frontend.Interfaces;
 using System;
 
 namespace Frontend.Models
 {
-    public class ErrorViewModel
+    public class ErrorViewModel : IErrorViewModel
     {
         public string RequestId { get; set; }
 

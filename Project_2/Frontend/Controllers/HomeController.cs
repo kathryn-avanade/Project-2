@@ -1,5 +1,8 @@
-﻿using Frontend.Models;
+﻿using Frontend.Data;
+using Frontend.Interfaces;
+using Frontend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,11 +19,13 @@ namespace Frontend.Controllers
         //Dependancy injection 
         private readonly ILogger<HomeController> _logger;
         private IConfiguration Configuration;
+        private IRepoWrapper _repo;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, IRepoWrapper repoWrapper)
         {
             _logger = logger;
             Configuration = configuration;
+            _repo = repoWrapper;
         }
 
         //As await is used, this method needs to have the async keyword 
@@ -44,6 +49,17 @@ namespace Frontend.Controllers
             var serviceThreeURLPlace = await new HttpClient().GetStringAsync(Service3PlaceURL);
             ViewBag.placeURL = serviceThreeURLPlace;
 
+            //At this point, create a new wedding object and add it to the database of weddings 
+            var myWedding = new Wedding
+            {
+                WeddingText = serviceThreeResponseCall,
+                PersonURL = serviceThreeURLPerson,
+                PlaceURL = serviceThreeURLPlace,
+                Date = DateTime.Now
+            };
+            _repo.Weddings.Create(myWedding);
+            _repo.Save();
+
             return View();
         }
 
@@ -57,8 +73,10 @@ namespace Frontend.Controllers
 
 
 
-       
         
+
+
+
 
 
 

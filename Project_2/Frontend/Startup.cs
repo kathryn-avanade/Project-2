@@ -1,6 +1,10 @@
+using Frontend.Data;
+using Frontend.Interfaces;
+using Frontend.Models.Repos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,10 +30,10 @@ namespace Frontend
             //This line ensures all urls are lowercase by convention
             services.AddRouting(r => r.LowercaseUrls = true);
             services.AddControllersWithViews();
-
-            //var myConnectionString = Configuration.GetConnectionString("DefaultConnection");
-            //services.AddDbContext<ApplicationDBContext>(options => options.UseMySql(myConnectionString, ServerVersion.AutoDetect(myConnectionString)));
-            //services.AddControllersWithViews();
+            services.AddScoped<IRepoWrapper, RepoWrapper>();
+            var myConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDBContext>(options => options.UseMySql(myConnectionString, ServerVersion.AutoDetect(myConnectionString)));
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
