@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Moq;
+using RichardSzalay.MockHttp;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -26,7 +28,13 @@ namespace Project_2.Tests
             logger = new Mock<ILogger<HomeController>>();
             config = new Mock<IConfiguration>();
             mockRepo = new Mock<IRepoWrapper>();
-            homeController = new HomeController(logger.Object, config.Object, mockRepo.Object);
+            var mockHttp = new MockHttpMessageHandler();
+            mockHttp.When("http://localhost:17702/wedding").Respond("text/plain", "");
+            mockHttp.When("http://localhost:17702/wedding/person").Respond("text/plain", "");
+            mockHttp.When("http://localhost:17702/wedding/place/something").Respond("text/plain", "");
+            var client = new HttpClient(mockHttp);
+            homeController = new HomeController(logger.Object, config.Object, client, mockRepo.Object);
+
         }
 
         [Fact]
@@ -35,6 +43,8 @@ namespace Project_2.Tests
             //Arrange
             //The mock objects have been arranged above to be passed to the new local
             // HomeController object which will be tested on
+            //Mock the http requests
+            
 
             //Act
             //Call the index method on the local HomeController object
@@ -50,6 +60,7 @@ namespace Project_2.Tests
             string personURL = "www.myperson.com";
             string placeURL = "www.myplace.com";
             string serviceThree = "Your dream wedding is with person in place";
+            
 
             //Act
             var result = homeController.Add(serviceThree, personURL, placeURL);

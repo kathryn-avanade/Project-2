@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Moq;
+using RichardSzalay.MockHttp;
 using service_three.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -20,7 +22,16 @@ namespace Project_2.Tests
         {
             
             config = new Mock<IConfiguration>();
-            weddingController = new WeddingController(config.Object);
+            
+
+            var mockHttp = new MockHttpMessageHandler();
+            mockHttp.When("http://localhost:41446/person").Respond("text/plain", "");
+            mockHttp.When("http://localhost:54757/place").Respond("text/plain", "");
+            mockHttp.When("http://localhost:41446/person/person").Respond("text/plain", "");
+            mockHttp.When("http://localhost:54757/place/place").Respond("text/plain", "");
+            var client = new HttpClient(mockHttp);
+
+            weddingController = new WeddingController(config.Object, client);
         }
 
         [Fact]

@@ -15,9 +15,14 @@ namespace service_three.Controllers
     {
         //Dependency injection
         private IConfiguration Configuration;
-        public WeddingController(IConfiguration configuration)
+        private HttpClient _client;
+
+        public WeddingController(IConfiguration configuration, HttpClient client)
         {
             Configuration = configuration;
+            _client = client;
+
+
         }
         
 
@@ -29,10 +34,10 @@ namespace service_three.Controllers
         //It is used when executing something in parallel, i.e. calling two other apis 
         {
             var PersonService = $"{Configuration["personServiceURL"]}/person";
-            var serviceOneResponseCall = await new HttpClient().GetStringAsync(PersonService);
+            var serviceOneResponseCall = await _client.GetStringAsync(PersonService);
 
             var PlaceService = $"{Configuration["placeServiceURL"]}/place";
-            var serviceTwoResponseCall = await new HttpClient().GetStringAsync(PlaceService);
+            var serviceTwoResponseCall = await _client.GetStringAsync(PlaceService);
             
             var serviceThreeResponse = $"Your dream wedding is with {serviceOneResponseCall} {serviceTwoResponseCall}";
 
@@ -48,7 +53,7 @@ namespace service_three.Controllers
         {
 
             var PersonServiceURL = $"{Configuration["personServiceURL"]}/person/person";
-            var serviceOneResponseCallURL = await new HttpClient().GetStringAsync(PersonServiceURL);
+            var serviceOneResponseCallURL = await _client.GetStringAsync(PersonServiceURL);
             return Ok(serviceOneResponseCallURL);
          
         }
@@ -59,7 +64,7 @@ namespace service_three.Controllers
         {
 
             var PlaceServiceURL = $"{Configuration["placeServiceURL"]}/place/place";
-            var serviceTwoResponseCallURL = await new HttpClient().GetStringAsync(PlaceServiceURL);
+            var serviceTwoResponseCallURL = await _client.GetStringAsync(PlaceServiceURL);
             return Ok(serviceTwoResponseCallURL);
 
         }
