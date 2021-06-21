@@ -3,11 +3,13 @@ using Frontend.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Frontend.Models.Repos
 {
+    [ExcludeFromCodeCoverage]
     public class Repos<T> : IRepository<T> where T:class
     {
         protected ApplicationDBContext RepositoryContext { get; set; }

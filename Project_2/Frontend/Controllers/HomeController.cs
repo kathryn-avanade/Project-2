@@ -49,6 +49,15 @@ namespace Frontend.Controllers
             var serviceThreeURLPlace = await new HttpClient().GetStringAsync(Service3PlaceURL);
             ViewBag.placeURL = serviceThreeURLPlace;
 
+            Wedding myWedding = Add(serviceThreeResponseCall, serviceThreeURLPerson, serviceThreeURLPlace);
+            _repo.Weddings.Create(myWedding);
+            _repo.Save();
+
+            return View();
+        }
+     
+        public Wedding Add(string serviceThreeResponseCall, string serviceThreeURLPerson, string serviceThreeURLPlace)
+        {
             //At this point, create a new wedding object and add it to the database of weddings 
             var myWedding = new Wedding
             {
@@ -57,13 +66,12 @@ namespace Frontend.Controllers
                 PlaceURL = serviceThreeURLPlace,
                 Date = DateTime.Now
             };
-            _repo.Weddings.Create(myWedding);
-            _repo.Save();
-
-            return View();
+            return myWedding;
+            
+            
         }
 
-     
+
         //Error view page 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

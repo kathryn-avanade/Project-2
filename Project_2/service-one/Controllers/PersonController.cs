@@ -38,21 +38,6 @@ namespace service_one.Controllers
 
         private static int random;
         
-        //public int Random{
-        //    get
-        //    {
-        //        return random;
-        //    }
-        //    set
-        //    {
-        //        Random r = new Random();
-        //        int rdm = r.Next(0, People.Length - 1);
-        //        random = rdm;
-        //    }
-            
-        //}
-
-
         [Route("[controller]")]
         [HttpGet]
         public ActionResult<String> Get()

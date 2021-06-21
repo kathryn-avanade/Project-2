@@ -6,20 +6,33 @@ using Xunit;
 
 namespace Project_2.Tests
 {
-    public class PersonControllerTests
+    public class PersonControllerTest
     {
-        [Fact]
-        public void ActionMethod_Returns_String()
+        //Arrange
+        //Create local controller to test
+
+        private PersonController controller;
+        public PersonControllerTest()
         {
-            //Arrange
-            //Create local controller to test
-            var controller = new PersonController();
+            controller = new PersonController();
+        }
+        
+        [Fact]
+        public void PersonControllerGetMethod()
+        {
+           
             //Act
             //Run the get method on the controller
             var result = controller.Get();
             //Assert 
             //Check the get method returns something of type string
             Assert.IsType<ActionResult<String>>(result);
+        }
+        [Fact]
+        public void PersonControllerGetURLMethod()
+        {
+            var result = controller.GetURL("");
+            Assert.IsType<ActionResult<string>>(result);
         }
     }
 }

@@ -46,23 +46,7 @@ namespace service_two.Controllers
 
         private static int random;
 
-        //public int Random
-        //{
-        //    get
-        //    {
-        //        return random;
-        //    }
-        //    set
-        //    {
-        //        Random r = new Random();
-        //        int rdm = r.Next(0, Places.Length - 1);
-        //        random = rdm;
-        //    }
-
-        //}
        
-        
-
         [Route("[controller]")]
         [HttpGet]
         //Generate a random place by looking in a random index of the array
@@ -78,8 +62,8 @@ namespace service_two.Controllers
         [HttpGet]
         public ActionResult<String> GetURL(string place)
         {
-            //var index = Array.FindIndex(Places, item => item.Contains(place));
-            //Find the right place in places 
+            
+            //Find the right place in places array
             return PlaceImages[random];
         }
     }

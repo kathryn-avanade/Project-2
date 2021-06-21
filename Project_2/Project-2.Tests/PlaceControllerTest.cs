@@ -8,18 +8,31 @@ namespace Project_2.Tests
 {
     public class PlaceControllerTest
     {
-        [Fact]
-        public void ActionMethod_Returns_String()
+        private PlaceController controller;
+        public PlaceControllerTest()
         {
             //Arrange
             //Create local controller to test
-            var controller = new PlaceController();
+            controller = new PlaceController();
+        }
+        [Fact]
+        public void ActionMethod_Returns_String()
+        {
+            
             //Act
             //Run the get method on the controller
             var result = controller.Get();
             //Assert 
             //Check the get method returns something of type string
             Assert.IsType<ActionResult<String>>(result);
+        }
+        [Fact]
+        public void PersonControllerGetURLMethod()
+        {
+            //Act
+            var result = controller.GetURL("");
+            //Assert
+            Assert.IsType<ActionResult<string>>(result);
         }
     }
 }

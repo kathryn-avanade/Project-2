@@ -24,7 +24,7 @@ namespace Project_2.Tests
         }
 
         [Fact]
-        public void ActionMethod_Returns_String()
+        public void TestWeddingControllerIndexMethod()
         {
             //Arrange
             //The mock objects have been arranged above to be passed to the new local
@@ -37,6 +37,24 @@ namespace Project_2.Tests
             //Assert 
             //Check the get method returns something of type string
             Assert.IsType<Task<IActionResult>>(result);
+        }
+        [Fact]
+        public void TestWeddingControllerGetURLpersonMethod()
+        {
+            //act
+            var result = weddingController.GetURLperson();
+            //assert
+            Assert.IsType<Task<IActionResult>>(result);
+
+        }
+        [Fact]
+        public void TestWeddingControllerGetURLplaceMethod()
+        {
+            //act
+            var result = weddingController.GetURLplace("");
+            //assert
+            Assert.IsType<Task<IActionResult>>(result);
+
         }
     }
 }
