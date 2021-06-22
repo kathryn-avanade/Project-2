@@ -19,23 +19,16 @@ Included items must then not match any entries in the exclude list to remain inc
 						<!-- Match assembly file paths: -->
 						<ModulePaths>
 							<Exclude>
-								<ModulePath>Frontend.Views_Views_Home_Index.html</ModulePath>
-								<ModulePath>Frontend.Views_Views_ViewStart.html</ModulePath>
-								<ModulePath>Frontend.Views_Views_Shared__Layout.html</ModulePath>
-								<ModulePath>Frontend.Views_Views_Shared_Error.html</ModulePath>
-								<ModulePath>Frontend.Views_Views_Weddings_Index.html</ModulePath>
-								<ModulePath>Frontend_IErrorViewModel.html</ModulePath>
-								<ModulePath>Frontend_IRepoWrapper.html</ModulePath>
+								<ModulePath>.*Frontend.Views.dll</ModulePath>
+					
+								
 							</Exclude>
 						</ModulePaths>
 
 						<Sources>
 							<Exclude>
-								<Source>	C:\Users\kathryn.mcgregor\OneDrive - Avanade\QA DEVOP PROJECT\Project 2\Project_2\Frontend\Views\Shared\_Layout.cshtml</Source>
-								<Source>C:\Users\kathryn.mcgregor\OneDrive - Avanade\QA DEVOP PROJECT\Project 2\Project_2\Frontend\Views\Shared\Error.cshtml</Source>
-								<Source>C:\Users\kathryn.mcgregor\OneDrive - Avanade\QA DEVOP PROJECT\Project 2\Project_2\Frontend\Views\Weddings\Index.cshtml</Source>
-								<Source>C:\Users\kathryn.mcgregor\OneDrive - Avanade\QA DEVOP PROJECT\Project 2\Project_2\Frontend\Views\_ViewImports.cshtml</Source>
-								<Source>C:\Users\kathryn.mcgregor\OneDrive - Avanade\QA DEVOP PROJECT\Project 2\Project_2\Frontend\Views\_ViewStart.cshtml</Source>
+								
+							
 							</Exclude>
 						</Sources>
 

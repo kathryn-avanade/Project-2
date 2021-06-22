@@ -1,10 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Frontend.Migrations
 {
-    [ExcludeFromCodeCoverage]
-    public partial class initdb3 : Migration
+    public partial class monday : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

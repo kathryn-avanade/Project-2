@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -18,13 +20,13 @@ namespace Frontend.Controllers
     {
         //Dependancy injection 
         private readonly ILogger<HomeController> _logger;
-        private IConfiguration Configuration;
+        private AppSettings Configuration;
         private IRepoWrapper _repo;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration configuration, IRepoWrapper repoWrapper)
+        public HomeController(ILogger<HomeController> logger, IOptions<AppSettings> settings, IRepoWrapper repoWrapper)
         {
             _logger = logger;
-            Configuration = configuration;
+            Configuration = settings.Value;
             _repo = repoWrapper;
         }
 
@@ -34,18 +36,18 @@ namespace Frontend.Controllers
         {
             //This line is used to find the controller in the api, it gets the controller name from the keyvalue of the 
             //route dictionary (any case) i.e. by writing /wedding it looks for WeddingController
-            var Service3 = $"{Configuration["Service3URL"]}/wedding";
+            var Service3 = $"{Configuration.Service3URL}/wedding";
             var serviceThreeResponseCall = await new HttpClient().GetStringAsync(Service3);
             //Wedding result to show on webpage using viewbag 
             ViewBag.responseCall = serviceThreeResponseCall;
 
             //Get person image url
-            var Service3PersonURL = $"{Configuration["Service3URL"]}/wedding/person";
+            var Service3PersonURL = $"{Configuration.Service3URL}/wedding/person";
             var serviceThreeURLPerson = await new HttpClient().GetStringAsync(Service3PersonURL);
             ViewBag.personURL = serviceThreeURLPerson;
 
             //Get place image url
-            var Service3PlaceURL = $"{Configuration["Service3URL"]}/wedding/place/something";
+            var Service3PlaceURL = $"{Configuration.Service3URL}/wedding/place/something";
             var serviceThreeURLPlace = await new HttpClient().GetStringAsync(Service3PlaceURL);
             ViewBag.placeURL = serviceThreeURLPlace;
 
@@ -72,6 +74,7 @@ namespace Frontend.Controllers
         }
 
 
+        [ExcludeFromCodeCoverage]
         //Error view page 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

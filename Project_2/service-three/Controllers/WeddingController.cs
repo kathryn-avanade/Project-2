@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,12 @@ namespace service_three.Controllers
     public class WeddingController : ControllerBase
     {
         //Dependency injection
-        private IConfiguration Configuration;
-        public WeddingController(IConfiguration configuration)
+        private AppSettings Configuration;
+        
+        public WeddingController(IOptions<AppSettings> settings)
         {
-            Configuration = configuration;
+            Configuration = settings.Value;
+           
         }
         
 
@@ -28,10 +31,10 @@ namespace service_three.Controllers
         //The task can tell you if the work is completed and if the operation returns a result, the task gives you the result.
         //It is used when executing something in parallel, i.e. calling two other apis 
         {
-            var PersonService = $"{Configuration["personServiceURL"]}/person";
+            var PersonService = $"{Configuration.personServiceURL}/person";
             var serviceOneResponseCall = await new HttpClient().GetStringAsync(PersonService);
 
-            var PlaceService = $"{Configuration["placeServiceURL"]}/place";
+            var PlaceService = $"{Configuration.placeServiceURL}/place";
             var serviceTwoResponseCall = await new HttpClient().GetStringAsync(PlaceService);
             
             var serviceThreeResponse = $"Your dream wedding is with {serviceOneResponseCall} {serviceTwoResponseCall}";
@@ -47,7 +50,7 @@ namespace service_three.Controllers
         public async Task<IActionResult> GetURLperson() 
         {
 
-            var PersonServiceURL = $"{Configuration["personServiceURL"]}/person/person";
+            var PersonServiceURL = $"{Configuration.personServiceURL}/person/person";
             var serviceOneResponseCallURL = await new HttpClient().GetStringAsync(PersonServiceURL);
             return Ok(serviceOneResponseCallURL);
          
@@ -58,7 +61,7 @@ namespace service_three.Controllers
         public async Task<IActionResult> GetURLplace(string place)
         {
 
-            var PlaceServiceURL = $"{Configuration["placeServiceURL"]}/place/place";
+            var PlaceServiceURL = $"{Configuration.placeServiceURL}/place/place";
             var serviceTwoResponseCallURL = await new HttpClient().GetStringAsync(PlaceServiceURL);
             return Ok(serviceTwoResponseCallURL);
 
