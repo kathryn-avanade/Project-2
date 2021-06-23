@@ -1,0 +1,12 @@
+[
+    {
+        "name": "AppSettings__personServiceURL",
+        "value": "https://kat-person.azurewebsites.net",
+        "slotSetting": false
+    },
+    {
+        "name": "AppSettings__placeServiceURL",
+        "value": "https://kat-place.azurewebsites.net",
+        "slotSetting": false
+    }
+]
