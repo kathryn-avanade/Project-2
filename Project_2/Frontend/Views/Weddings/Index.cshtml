@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Frontend.Models.Wedding>
+
+@{
+    ViewData["Title"] = "Weddings";
+}
+
+<h1>Prior Matches</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Weddings
+            </th>
+            <th>
+                Person
+            </th>
+            <th>
+                Place
+            </th>
+            <th>
+                Date and time 
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeddingText)
+            </td>
+            <td>
+
+                <img src="@Url.Content(item.PersonURL)" alt="Person" width="200" />
+            </td>
+            <td>
+
+                <img src="@Url.Content(item.PlaceURL)" alt="Place" width="200" />
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

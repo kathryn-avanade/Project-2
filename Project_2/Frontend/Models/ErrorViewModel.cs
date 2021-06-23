@@ -1,8 +1,11 @@
+using Frontend.Interfaces;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Frontend.Models
 {
-    public class ErrorViewModel
+    [ExcludeFromCodeCoverage]
+    public class ErrorViewModel : IErrorViewModel
     {
         public string RequestId { get; set; }
 

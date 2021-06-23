@@ -1,21 +1,34 @@
+using Frontend.Data;
+using Frontend.Interfaces;
+using Frontend.Models.Repos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Frontend
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+
+            var builder = new ConfigurationBuilder()
+                 .SetBasePath(env.ContentRootPath)
+                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -23,6 +36,13 @@ namespace Frontend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<AppSettings>(options => Configuration.GetSection("AppSettings").Bind(options));
+            //This line ensures all urls are lowercase by convention
+            services.AddRouting(r => r.LowercaseUrls = true);
+            services.AddControllersWithViews();
+            services.AddScoped<IRepoWrapper, RepoWrapper>();
+            var myConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDBContext>(options => options.UseMySql(myConnectionString, ServerVersion.AutoDetect(myConnectionString)));
             services.AddControllersWithViews();
         }
 
