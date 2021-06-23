@@ -18,9 +18,9 @@ env:
   TEST_DIRECTORY: ./Project_2/Project_2
   
   FE_PACKAGE_PATH: ./Project_2/Frontend/publish
-  NUMBERS_PACKAGE_PATH: ./Project_2/service-one/publish
-  LETTERS_PACKAGE_PATH: ./Project_2/service-two/publish
-  MERGE_PACKAGE_PATH: ./Project_2/service-three/publish
+  PERSON_PACKAGE_PATH: ./Project_2/service-one/publish
+  PLACE_PACKAGE_PATH: ./Project_2/service-two/publish
+  WEDDING_PACKAGE_PATH: ./Project_2/service-three/publish
 
 jobs:
 
