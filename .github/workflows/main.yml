@@ -152,6 +152,6 @@ jobs:
         with:
           azcliversion: 2.25.0
           inlineScript: |
-            cd "${{ env.FE_DIRECTORY }}"
+            cd "${{ env.FE_PACKAGE_PATH }}"
             az webapp up -n kat-frontend --os-type Linux --resource-group kat-rg --runtime "DOTNET|5.0"
             az webapp config appsettings set -g kat-rg -n kat-frontend --settings "@../../.github/workflows/frontendSettings.json"
