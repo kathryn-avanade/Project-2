@@ -16,6 +16,11 @@ env:
   WEDDING_DIRECTORY: ./Project_2/service-three
   FE_DIRECTORY: ./Project_2/Frontend
   TEST_DIRECTORY: ./Project_2/Project_2
+  
+  FE_PACKAGE_PATH: ./Project_2/Frontend/publish
+  NUMBERS_PACKAGE_PATH: ./Project_2/service-one/publish
+  LETTERS_PACKAGE_PATH: ./Project_2/service-two/publish
+  MERGE_PACKAGE_PATH: ./Project_2/service-three/publish
 
 jobs:
 
@@ -41,7 +46,9 @@ jobs:
         run: dotnet restore "${{ env.PERSON_DIRECTORY }}"
       - name: Build
         run: dotnet build "${{ env.PERSON_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
-      - name: publish numbers service to Azure
+      - name: publish 
+        run: dotnet publish "${{ env.PERSON_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output "${{ env.PERSON_PACKAGE_PATH }}"
+      - name: publish Service to Azure
         run: az
       - name: Azure Login
         uses: azure/login@v1
@@ -53,8 +60,8 @@ jobs:
         with:
           azcliversion: 2.25.0
           inlineScript: |
-            cd "${{ env.PERSON_DIRECTORY }}"
-            az webapp up -n kat-person --os-type Linux --resource-group kat-rg
+            cd "${{ env.PERSON_PACKAGE_PATH }}"
+            az webapp up -n kat-person --os-type Linux --resource-group kat-rg --runtime "DOTNET|5.0"
   build-place-service:
       runs-on: ubuntu-latest
       needs: test
@@ -70,7 +77,9 @@ jobs:
           run: dotnet restore "${{ env.PLACE_DIRECTORY }}"
         - name: Build
           run: dotnet build "${{ env.PLACE_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
-        - name: publish numbers service to Azure
+        - name: Publish
+          run: dotnet publish "${{ env.PLACE_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output "${{ env.PLACE_PACKAGE_PATH }}"
+        - name: publish service to Azure
           run: az
         - name: Azure Login
           uses: azure/login@v1
@@ -82,8 +91,8 @@ jobs:
           with:
             azcliversion: 2.25.0
             inlineScript: |
-              cd "${{ env.PLACE_DIRECTORY }}"
-              az webapp up -n kat-place --os-type Linux --resource-group kat-rg
+              cd "${{ env.PLACE_PACKAGE_PATH }}"
+              az webapp up -n kat-place --os-type Linux --resource-group kat-rg --runtime "DOTNET|5.0"
   build-wedding-service:
     runs-on: ubuntu-latest
     needs: test
@@ -99,7 +108,9 @@ jobs:
         run: dotnet restore "${{ env.WEDDING_DIRECTORY }}"
       - name: Build
         run: dotnet build "${{ env.WEDDING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
-      - name: publish numbers service to Azure
+      - name: Publish
+        run: dotnet publish "${{ env.WEDDING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output "${{ env.WEDDING_PACKAGE_PATH }}"
+      - name: publish service to Azure
         run: az
       - name: Azure Login
         uses: azure/login@v1
@@ -111,8 +122,8 @@ jobs:
         with:
           azcliversion: 2.25.0
           inlineScript: |
-            cd "${{ env.WEDDING_DIRECTORY }}"
-            az webapp up -n kat-wedding --os-type Linux --resource-group kat-rg
+            cd "${{ env.WEDDING_PACKAGE_PATH }}"
+            az webapp up -n kat-wedding --os-type Linux --resource-group kat-rg --runtime "DOTNET|5.0"
             az webapp config appsettings set -g kat-rg -n kat-wedding --settings "@../../.github/workflows/mergeSettings.json"
   build-frontend-service:
     runs-on: ubuntu-latest
@@ -127,6 +138,8 @@ jobs:
         run: dotnet restore "${{ env.FE_DIRECTORY }}"
       - name: Build
         run: dotnet build "${{ env.FE_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }}
+      - name: Publish
+        run: dotnet publish "${{ env.FE_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --output "${{ env.FE_PACKAGE_PATH }}"
       - name: publish 
         run: az
       - name: Azure Login
@@ -140,5 +153,5 @@ jobs:
           azcliversion: 2.25.0
           inlineScript: |
             cd "${{ env.FE_DIRECTORY }}"
-            az webapp up -n kat-frontend --os-type Linux --resource-group kat-rg
+            az webapp up -n kat-frontend --os-type Linux --resource-group kat-rg --runtime "DOTNET|5.0"
             az webapp config appsettings set -g kat-rg -n kat-frontend --settings "@../../.github/workflows/frontendSettings.json"
