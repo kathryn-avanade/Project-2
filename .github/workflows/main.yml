@@ -124,7 +124,7 @@ jobs:
           inlineScript: |
             cd "${{ env.WEDDING_PACKAGE_PATH }}"
             az webapp up -n kat-wedding --os-type Linux --resource-group kat-rg --runtime "DOTNET|5.0"
-            az webapp config appsettings set -g kat-rg -n kat-wedding --settings "@../../.github/workflows/mergeSettings.json"
+            az webapp config appsettings set -g kat-rg -n kat-wedding --settings "@../../../.github/workflows/mergeSettings.json"
   build-frontend-service:
     runs-on: ubuntu-latest
     needs: test
@@ -154,4 +154,4 @@ jobs:
           inlineScript: |
             cd "${{ env.FE_PACKAGE_PATH }}"
             az webapp up -n kat-frontend --os-type Linux --resource-group kat-rg --runtime "DOTNET|5.0"
-            az webapp config appsettings set -g kat-rg -n kat-frontend --settings "@../../.github/workflows/frontendSettings.json"
+            az webapp config appsettings set -g kat-rg -n kat-frontend --settings "@../../../.github/workflows/frontendSettings.json"
