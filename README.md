@@ -11,6 +11,8 @@
 
 [Project Management](#ProjMan) 
 
+[Version Control](#VC) 
+
 [Architecture](#AppArch)
 
 [Risk Assessment](#Risk)
@@ -86,6 +88,12 @@ CI Pipeline
 
 ![Diagram](/NewCIPipeline.png?raw=true)
 
+<span id="VC"></span>
+**Version Control** 
+---------------
+
+* For version control I used github/git. I am using the master branch for my documentation and up-to-date code that successfully builds. This branch also contains the github workflows (yml files) to make build jobs portable. 
+* I used a new branch, 'feature-branch-1' to push my code to as I was working. I also created a new branch called 'testing' to try to rectify some of the problems I was having with testing.
 
 <span id="AppArch"></span>
 **Service Oriented Architecture**
@@ -109,28 +117,30 @@ This service will also create an “Object” however this “Object” must be 
 |Risk|Likelihood|Severity|Control|Update
 |---|---|---|---|---|
 |Web server goes down|Low|High|Set up a backup virtual machine|Not implemented 
-|Grammar of resulting sentence doesn't make sense|High|Low|Manually check the array entries to check they make sense|Altered the string
-|Services cant comunicate|Med|High|N/A|N/A
+|Grammar of resulting sentence doesn't make sense|High|Low|Manually check the array entries to check they make sense|Altered the strings so that each result made sense 11/06/21
+|Services cant comunicate with each other|Med|High|Test that routing is correct and that the app settings are correct|A check was done on the locally running code 11/06/21, tests haven't been written
 |Build trigger fails|Med|High|Test that the pipeline is triggered by pushing new code to master branch, check that merge conflicts don't affect this process|To be updated
-|Push fails|Med|High|Check before deployment that updates to the app get committed to github|Push didn't work, but I fixed this by going to git tab in VS2019 then 'commit or stash' instead of 'Push'. Also check the branch in the bottom right is correct before committing|
-|Automated test report generation fails|Med|Low|As a fail safe, generate a test report locally and save it|Saved report locally 16/06/21
-|Images don't correspond with text|High|Med|Write a test to ensure the correct array index is chosen|-|
+|Push fails|Med|High|Check before deployment that updates to the app get committed to github|Check that branch is correct and all commits are staged before pushing, VS2019 is a better way of doing this than git bash for me as I can visually see which folders and files are being staged more clearly|07/06/21
+|Automated test report generation fails in pipeline|Med|Low|As a fail safe, generate a test report locally and save it|Saved report locally 16/06/21 then 21/06/21
+|Images don't correspond with text|High|Med|Write a test to ensure the correct array index is chosen|Manually checked this worked but didnt write a test 16/06/21 |
 |Github actions can't find access azure resources|Med|High|Happened with deployment the first time, solution was to just refresh all jobs, can also delete a resource and run terraform again|23/06/21
-
-
-
-
-
+|Deployed resources can't be accessed from azure|High|High|Couldn't figure out the problem or solution|23/06/21
 
 <span id="Testing"></span>
 **Testing**
 ---------------
 
+**Unit Tests**
+
 * Unit tests using XUnit are written for all methods in all controllers in the application. This required mocking for the Ilogging, IConfiguration and database objects 
 * To test the database objects using mocking I had to implement a repository pattern
 * I used XUnit testing, ensuring I kept to best practises by keeping all tests associated with seperate controllers in serparate folders.
+* These type of tests are to ensure controllers return the desired result
 * To test the app further would require integration, functional and load/stress testing, as unit testing isolates the part of your code from it's dependancies and infrastructure. 
-* Results of tests are logged and discussed in the test coverage report below. To generate the report, I used "XPlat Code Coverage" and then generated a html report
+
+**Results**
+
+* Results of tests are logged in the test coverage report below. To generate the report, I used "XPlat Code Coverage" and then generated a html report
 * The files excluded from the test report are files with very minimal functionality e.g. the error view method in the home controller was auto generated when an mvc project is created, interfaces don't contain functionality, migration files, program and startup files.
 
 ![Diagram](/testreport.png?raw=true)
