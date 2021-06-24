@@ -150,7 +150,7 @@ This service will also create an “Object” however this “Object” must be 
 **Deployment**
 ---------------
 
-**What I wanted to do:**
+**What I wanted to do**
 
 The applications services will be deployed using Azure as a cloud platform but the app can be deployed using any appropriate Azure services, a list of possibilities include:
 * Azure app service
@@ -172,13 +172,16 @@ I used an Azure app service for the frontend service, and 3 azure functions for 
 
 **Why I had to change my plan**
 * I found azure devops not very user friendly and it also required a build agent that I created and configured in azure which was an extra step that wasn't required using github actions. 
+* I did manage to deploy my frontend project to an azure app service but couldn't deploy the others to function apps.
 * Although a benefit of using Azure Devops is that it is consistently improving, I actually found that this meant it was hard to troubleshoot problems and ask for help when the GUI I was using was different than expected after looking at articles.
+
+![Diagram](/devops.png?raw=true)
 
 **What I actually did**
 * After having problems with azure devops and function apps, I decided to run a simpler terraform script which created all app services and a database, this was quicker to write, debug and run.
 * I used github actions instead to deploy the app, as I had problems with azure devops.
 
-**Result**
+**Results**
 * After many unsuccessful attempts I managed to deploy all services using github Actions 
 * However something, somewhere is wrong as only service 1-3 appear when the azure resource is accessed 
 * It also meant I had to change some of my code for the app settings, which meant some of my tests failed
