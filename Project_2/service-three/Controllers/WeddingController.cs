@@ -37,7 +37,7 @@ namespace service_three.Controllers
             var PlaceService = $"{Configuration.placeServiceURL}/place";
             var serviceTwoResponseCall = await new HttpClient().GetStringAsync(PlaceService);
             
-            var serviceThreeResponse = $"Your dream wedding is with {serviceOneResponseCall} {serviceTwoResponseCall}";
+            var serviceThreeResponse = $"Your dream wedding is with {serviceOneResponseCall} {serviceTwoResponseCall}.";
 
             return Ok(serviceThreeResponse);
             //Ok method: ObjectResult that sets the 200 status code (means success) 
