@@ -80,7 +80,6 @@ The page will display the result "Your dream wedding is with [person] in [place]
 Project Management 
 * I have used Azure DevOps Boards for project management which you can find a link to here: 
 [User Stories, Tasks and Epics](https://dev.azure.com/kathrynmcgregor/Project-2-Devops/)
-* I have also kept a diary with details on what was done and when, in addition to this documentation. You can find this under the diary section.
 
 CI Pipeline
 * I aim to produce code on my local computer using Visual Studio 2019 and then push this to github in a feature branch. 
