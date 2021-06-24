@@ -99,7 +99,7 @@ CI Pipeline
 **Service Oriented Architecture**
 ---------------
 
-![Diagram](/Design.png?raw=true)
+![Diagram](/DesignNew.png?raw=true)
 
 Service 1
 The core service – this renders the HTML, it will also be responsible for communicating with the other 3 services, and finally for persisting some data in an SQL database if there is time to implement this.
