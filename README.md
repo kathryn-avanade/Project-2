@@ -186,6 +186,11 @@ I used an Azure app service for the frontend service, and 3 azure functions for 
 * Unfortunately this means I can't show you the full continuous integration 
 * I will now show the result in azure 
 
+![Diagram](/deploy.png?raw=true)
+![Diagram](/deployed.png?raw=true)
+![Diagram](/deployed2.png?raw=true)
+![Diagram](/deployed3.png?raw=true)
+
 <span id="FD"></span>
 **Front-End Design**
 ---------------
