@@ -48,8 +48,10 @@ The tools used to solve the problem:
   * Git: Software which manages code pushes/pulls, version control system
   * Github: Online remote repo for code 
   * Azure DevOps Boards: Used to create user stories, epics, tasks on Boards
-  * Azure DevOps Pipelines: Push to master branch as a trigger to provide continuous integration
+  * Azure DevOps Pipelines/ Github Actions: Push to master branch as a trigger to provide continuous integration
   * Visual Studio 2019: Local software writing app to push code from 
+
+The link to my work are here: https://github.com/kathryn-avanade/Project-2/
 
 <span id="Brief"></span>
 **Brief**
@@ -92,7 +94,7 @@ CI Pipeline
 **Version Control** 
 ---------------
 
-* For version control I used github/git. I am using the master branch for my documentation and up-to-date code that successfully builds. This branch also contains the github workflows (yml files) to make build jobs portable. 
+* For version control I used github/git. I am using the master branch for my documentation and up-to-date code that successfully builds. This branch also contains the github workflows (yml files) to make build jobs portable and the 'main.tf' terraform file I used to generate the azure resources. 
 * I used a new branch, 'feature-branch-1' to push my code to as I was working. I also created a new branch called 'testing' to try to rectify some of the problems I was having with testing.
 
 <span id="AppArch"></span>
@@ -178,7 +180,7 @@ I used an Azure app service for the frontend service, and 3 azure functions for 
 ![Diagram](/devops.png?raw=true)
 
 **What I actually did**
-* After having problems with azure devops and function apps, I decided to run a simpler terraform script which created all app services and a database, this was quicker to write, debug and run.
+* After having problems with azure devops and function apps, I decided to run a simpler terraform script which created all app services and a database, this was quicker to write, debug and run. This script is in my master branch with the title 'main.tf', it generates 4 app services and an sql database within the same location and resource group. 
 * I used github actions instead to deploy the app, as I had problems with azure devops.
 
 **Results**
@@ -187,7 +189,7 @@ I used an Azure app service for the frontend service, and 3 azure functions for 
 * It also meant I had to change some of my code for the app settings, which meant some of my tests failed
 * In the interest of time I commented these failing tests out and continued with trying to deploy the app, but now the code coverage for my deployed app isn't as high 
 * Unfortunately this means I can't show you the full continuous integration 
-* I will now show the result in azure 
+* I will now show the result in azure, or alternatively, there is a screenshot below:
 
 ![Diagram](/deploy.png?raw=true)
 ![Diagram](/deployed.png?raw=true)
@@ -198,7 +200,7 @@ I used an Azure app service for the frontend service, and 3 azure functions for 
 **Front-End Design**
 ---------------
 
-I will now give a demo of my app locally so you can see the frontend and database section of the app.
+I will now give a demo of my app locally so you can see the frontend and database section of the app, or alternatively, there is a screenshot below:
 
 ![Diagram](/frontend.png?raw=true)
 ![Diagram](/weddings.png?raw=true)
