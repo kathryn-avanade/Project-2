@@ -51,7 +51,9 @@ The tools used to solve the problem:
   * Azure DevOps Pipelines/ Github Actions: Push to master branch as a trigger to provide continuous integration
   * Visual Studio 2019: Local software writing app to push code from 
 
-The link to my work are here: https://github.com/kathryn-avanade/Project-2/
+The link to my work are here: 
+https://github.com/kathryn-avanade/Project-2/
+https://dev.azure.com/kathrynmcgregor/Project-2-Devops/
 
 <span id="Brief"></span>
 **Brief**
