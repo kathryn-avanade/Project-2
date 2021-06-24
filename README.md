@@ -190,7 +190,10 @@ I used an Azure app service for the frontend service, and 3 azure functions for 
 **Front-End Design**
 ---------------
 
-I will now give a demo of my app locally so you can see the frontend and database section of the app
+I will now give a demo of my app locally so you can see the frontend and database section of the app.
+
+![Diagram](/frontend.png?raw=true)
+![Diagram](/weddings.png?raw=true)
 
 <span id="Issues"></span>
 **Known Issues**
