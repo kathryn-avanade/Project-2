@@ -84,9 +84,6 @@ Project Management
 CI Pipeline
 * I aim to produce code on my local computer using Visual Studio 2019 and then push this to github in a feature branch. 
 * Once the code is complete and tested, I will merge the feature branch with the master branch, (or just push a new change from VS2019) which will trigger the CI server (Azure Pipelines) to build and deploy to a cloud-based environment where the infrastructure is created in terraform.
-
-![Diagram](/CIPipeline.png?raw=true)
-
 * In practice, I was only able to run terraform locally. I also used Github Actions to deploy my code instead of azure devops. This was because I was already working a lot within github and found github actions more user-friendly than azure devops. 
 
 ![Diagram](/NewCIPipeline.png?raw=true)
